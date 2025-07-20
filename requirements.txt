@@ -1,2 +1,4 @@
+pandas
 joblib
 scikit-learn
+pip
