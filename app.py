@@ -10,10 +10,19 @@ st.title("📊 Prediksi peminatan SMA Al-Istiqomah")
 
 @st.cache_resource
 def load_model():
-    return joblib.load("nilai_model.pkl")
+    try:
+        model = joblib.load("nilai_model.pkl")
+        st.success("✅ Model Decision Tree berhasil dimuat.")
+        return model
+    except Exception as e:
+        st.error(f"❌ Gagal memuat model: {e}")
+        return None
+
 
 model = load_model()
-st.success("✅ Model Decision Tree berhasil dimuat.")
+if model is None:
+    st.stop()
+    
 
 used_features = model.feature_names_in_
 
